@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="es" data-theme="pitch">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cambiar el tono de audio sin cambiar la velocidad | Afinavoz</title>
+    <meta name="description" content="Haz que una voz suene más grave o sube una canción de tono. La pista dura lo mismo y puedes guardar la mezcla en WAV.">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <meta name="theme-color" content="#15131c">
+    <link rel="canonical" href="https://1ly4s0.github.io/afinavoz/">
+    <link rel="alternate" hreflang="es" href="https://1ly4s0.github.io/afinavoz/">
+    <link rel="alternate" hreflang="en" href="https://1ly4s0.github.io/afinavoz/en/">
+    <link rel="alternate" hreflang="x-default" href="https://1ly4s0.github.io/afinavoz/">
+    <link rel="icon" type="image/png" href="assets/logo.png">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Afinavoz">
+    <meta property="og:locale" content="es_ES">
+    <meta property="og:url" content="https://1ly4s0.github.io/afinavoz/">
+    <meta property="og:title" content="Cambiar el tono de audio sin cambiar la velocidad | Afinavoz">
+    <meta property="og:description" content="Haz que una voz suene más grave o sube una canción de tono. La pista dura lo mismo y puedes guardar la mezcla en WAV.">
+    <meta property="og:image" content="https://1ly4s0.github.io/afinavoz/assets/share.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Vista del editor de Afinavoz">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="assets/style.css">
+    <script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "Afinavoz", "url": "https://1ly4s0.github.io/afinavoz/", "description": "Haz que una voz suene más grave o sube una canción de tono. La pista dura lo mismo y puedes guardar la mezcla en WAV.", "inLanguage": "es", "applicationCategory": "MultimediaApplication", "operatingSystem": "Any", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "image": "https://1ly4s0.github.io/afinavoz/assets/share.png"}</script>
+    <script type="module" src="assets/audio-studio.js"></script>
+</head>
+<body>
+    <header class="site-header">
+        <nav class="shell" aria-label="Navegación principal">
+            <a class="brand" href="./"><img src="assets/logo.png" alt="" height="35" width="35">Afinavoz</a>
+            <div class="nav-links">
+                <a class="guide-link" href="#guia">Cómo funciona</a>
+                <a class="faq-link" href="#faq">FAQ</a>
+                <a class="language" href="en/" hreflang="en" lang="en" aria-label="View in English">EN</a>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="hero shell">
+            <div class="intro">
+                <p class="tool-type">Editor de tono</p>
+                <h1>Cambia el <em>tono.</em></h1>
+                <p class="lede">Haz que una voz suene más grave o sube una canción de tono. La pista dura lo mismo y puedes guardar la mezcla en WAV.</p>
+                <p class="privacy"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10" width="14" height="10" rx="2"/><path d="M8 10V7a4 4 0 1 1 8 0v3m-4 4v2"/></svg> Tu archivo se queda en tu dispositivo.</p>
+            </div>
+            <section class="studio" id="studio" aria-labelledby="editor-title">
+                <div class="studio-title"><h2 id="editor-title">Mezcla de audio</h2><span id="track-state">Sin audio</span></div>
+                <div class="screen audio-screen">
+                    <canvas id="preview" width="720" height="140" aria-hidden="true"></canvas>
+                    <div class="audio-player">
+                        <div class="empty-transport" id="placeholder" aria-hidden="true"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 5 11 7-11 7z"/></svg><span class="transport-line"></span>0:00</div>
+                        <audio id="player" controls preload="metadata" aria-label="Reproductor de audio" hidden></audio>
+                    </div>
+                </div>
+
+                <div class="file-picker">
+                    <input id="file" type="file" accept="audio/*,.mp3,.wav,.ogg,.m4a,.flac">
+                    <label for="file">
+                        <span class="upload-icon"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 16V4m-5 5 5-5 5 5M4 16v4h16v-4"/></svg></span>
+                        <span class="file-info"><strong id="filename">Elige un archivo</strong><small id="file-detail">MP3, WAV, OGG y más</small></span>
+                        <span class="upload-arrow"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14m-6-6 6 6-6 6"/></svg></span>
+                    </label>
+                </div>
+                <fieldset id="settings">
+                    <legend>Ajustes</legend>
+                    <div class="presets"><button type="button" data-preset="low" aria-pressed="false">Voz grave</button><button type="button" data-preset="bright" aria-pressed="false">Voz aguda</button><button type="button" data-preset="octave" aria-pressed="false">Octava arriba</button><button type="button" data-preset="original" aria-pressed="false">Original</button></div><div class="settings-grid"><div class="field">
+                        <label for="semitones">Semitonos <output for="semitones">0</output></label>
+                        <input id="semitones" type="range" min="-12" max="12" value="0" data-unit="" data-signed>
+                    </div></div>
+                </fieldset>
+                <div class="action-row"><button id="listen" type="button" disabled>Escuchar mezcla</button>
+                    <button id="save" class="save" type="button" disabled>Descargar WAV</button></div>
+                <p id="status" class="status" role="status" aria-live="polite"></p>
+            </section>
+        </section>
+        <section class="guide-band" id="guia">
+            <div class="guide shell">
+                <h2>Cómo cambiar el tono sin acelerar la pista</h2>
+                <ol><li><h3>Abre el audio</h3><p>Elige una grabación de voz o una pista que quieras transponer.</p></li>
+<li><h3>Mueve los semitonos</h3><p>Un número negativo baja el tono. Prueba +12 para subir una octava completa.</p></li>
+<li><h3>Escucha y guarda</h3><p>Escucha el resultado y descarga el WAV cuando te encaje.</p></li></ol>
+            </div>
+        </section>
+        <section class="faqs shell" id="faq">
+            <h2>Preguntas frecuentes</h2>
+            <div><details><summary>¿Cambia la duración?</summary><p>El WAV mantiene la duración de la pista original. El procesamiento modifica el tono sin cambiar el tempo.</p></details>
+<details><summary>¿Por qué suena distinta mi voz?</summary><p>La transposición también desplaza los formantes. Con cambios grandes, una voz puede sonar menos natural. Prueba primero con dos o tres semitonos.</p></details>
+<details><summary>¿Se sube mi archivo?</summary><p>El archivo se procesa en tu navegador. No necesitas una cuenta.</p></details></div>
+        </section>
+        <section class="other shell">
+            <h2>Más herramientas</h2>
+            <nav class="tools-list" aria-label="Otras herramientas"><a href="https://1ly4s0.github.io/subgrave/">Subgrave</a>
+<a href="https://1ly4s0.github.io/cinta90/">Cinta90</a>
+<a href="https://1ly4s0.github.io/pulsovisual/">PulsoVisual</a>
+<a href="https://1ly4s0.github.io/planovertical/">PlanoVertical</a>
+<a href="https://slowedreverb.net/es/">SlowedReverb</a></nav>
+        </section>
+    </main>
+    <footer class="footer shell">
+        <span>Afinavoz · TECNO BROS</span>
+        <a href="https://github.com/1ly4s0/afinavoz">Ver código en GitHub</a>
+    </footer>
+</body>
+</html>
